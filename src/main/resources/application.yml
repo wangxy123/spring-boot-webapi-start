@@ -1,0 +1,17 @@
+#swagger-start配置
+swagger:
+    base-path: /**
+    exclude-path: /xywang/**, /error
+    
+#服务的端口号
+server:
+    port: 9001
+    
+#name，唯一标识
+spring:
+    application:
+        name: service-provider
+#监控点路径
+management:
+    security:
+        enabled: false
