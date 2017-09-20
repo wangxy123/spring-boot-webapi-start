@@ -1,11 +1,3 @@
-/**    
- * @Title: Operate.java  
- * @Package com.iflytek.billinginterface.model.entity  
- * @Description: TODO(用一句话描述该文件做什么)  
- * @author xywang   
- * @date 2017年8月19日 下午3:06:11  
- * @version V1.0    
- */
 package com.iflytek.springbootinterfacestart.model.entity;
 
 import java.util.Date;

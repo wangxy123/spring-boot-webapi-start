@@ -1,11 +1,3 @@
-/**    
- * @Title: TestController.java  
- * @Package com.iflytek.springbootinterfacestart.Controller  
- * @Description: TODO(用一句话描述该文件做什么)  
- * @author xywang   
- * @date 2017年9月19日 上午10:25:01  
- * @version V1.0    
- */
 package com.iflytek.springbootinterfacestart.controller;
 
 import javax.validation.Valid;
@@ -19,14 +11,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import springfox.documentation.annotations.ApiIgnore;
-
 import com.iflytek.springbootinterfacestart.exception.ParaIllegalException;
 import com.iflytek.springbootinterfacestart.model.Result;
-import com.iflytek.springbootinterfacestart.model.entity.Operation;
-import com.iflytek.springbootinterfacestart.model.entity.WebLog;
 import com.iflytek.springbootinterfacestart.model.req.TestReq;
 import com.iflytek.springbootinterfacestart.service.TestService;
+
+import static com.iflytek.springbootinterfacestart.common.util.WebLogUtil.*;
 
 /**
  * @ClassName: TestController
@@ -44,13 +34,16 @@ public class TestController {
 	@ResponseBody
 	@RequestMapping(value = "/test", method = RequestMethod.POST)
 	public Result<TestResp> test(@RequestBody @Valid TestReq req,
-								 BindingResult result, @ApiIgnore WebLog webLog) {
-		webLog.getOperates().add(new Operation("TestController.test.in"));
+			BindingResult result) {
 
+		operateLog("TestController.test.in");
+
+		// spring @Valid 做参数验证
+		// 可以替换为自己写的验证工具类
 		if (result.hasErrors()) {
 			throw new ParaIllegalException(result.getFieldError().toString());
 		}
 
-		return new Result<TestResp>(testService.test(webLog));
+		return new Result<TestResp>(testService.test());
 	}
 }

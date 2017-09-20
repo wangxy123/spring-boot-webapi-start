@@ -1,11 +1,3 @@
-/**    
- * @Title: Result.java  
- * @Package com.iflytek.springbootinterfacestart.model  
- * @Description: TODO(用一句话描述该文件做什么)  
- * @author xywang   
- * @date 2017年9月19日 上午10:01:16  
- * @version V1.0    
- */
 package com.iflytek.springbootinterfacestart.model;
 
 import java.io.Serializable;
