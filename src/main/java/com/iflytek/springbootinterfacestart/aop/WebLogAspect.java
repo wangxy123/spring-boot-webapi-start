@@ -86,14 +86,14 @@ public class WebLogAspect {
 		Result<?> result = new Result();
 
 		// 参数错误异常
-		// TODO 统一异常处理，可自行扩展
+		// 统一异常处理，可自行扩展
 		if (e instanceof ParaIllegalException) {
-			result.setMsg(e.getLocalizedMessage());
-			result.setCode(ResultCode.ILLEGALPARA.code);
+			result.setReturndesc(e.getLocalizedMessage());
+			result.setReturncode(ResultCode.ILLEGALPARA.returncode);
 		} else {
 			LOGGER.error(point.getSignature() + " error ", e);
-			result.setMsg(e.toString());
-			result.setCode(ResultCode.INTERNAL_SERVER_ERROR.code);
+			result.setReturndesc(e.toString());
+			result.setReturncode(ResultCode.INTERNAL_SERVER_ERROR.returncode);
 		}
 
 		return result;

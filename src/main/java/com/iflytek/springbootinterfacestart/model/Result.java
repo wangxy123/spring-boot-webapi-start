@@ -17,24 +17,28 @@ public class Result<T> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String msg;
+	private String returndesc;
 
-	private int code;
+	private String returncode;
 
 	private T data;
 
 	public Result() {
 		super();
+		this.returndesc = ResultCode.SUCCESS.returndesc;
+		this.returncode = ResultCode.SUCCESS.returncode;
 	}
 
 	public Result(T data) {
 		super();
+		this.returndesc = ResultCode.SUCCESS.returndesc;
+		this.returncode = ResultCode.SUCCESS.returncode;
 		this.data = data;
 	}
 
 	public Result(Throwable e) {
 		super();
-		this.msg = e.toString();
-		this.code = ResultCode.INTERNAL_SERVER_ERROR.code;
+		this.returndesc = e.toString();
+		this.returncode = ResultCode.INTERNAL_SERVER_ERROR.returncode;
 	}
 }
