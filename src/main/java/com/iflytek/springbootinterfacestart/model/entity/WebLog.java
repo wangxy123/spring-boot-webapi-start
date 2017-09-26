@@ -21,6 +21,7 @@ public class WebLog {
 	private List<Operation> operates;
 	private String ret;
 	private String time;
+	private String error;
 
 	public WebLog() {
 		operates = new ArrayList<Operation>();

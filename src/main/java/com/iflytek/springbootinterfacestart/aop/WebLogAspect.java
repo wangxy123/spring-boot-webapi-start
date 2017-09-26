@@ -95,7 +95,7 @@ public class WebLogAspect {
 			result.setReturndesc(e.toString());
 			result.setReturncode(ResultCode.INTERNAL_SERVER_ERROR.returncode);
 		}
-
+		getLog().setError(e.getMessage());
 		return result;
 	}
 
