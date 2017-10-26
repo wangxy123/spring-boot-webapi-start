@@ -11,7 +11,9 @@ package com.iflytek.springbootinterfacestart.config;
 import java.nio.charset.Charset;
 import java.util.List;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.alibaba.fastjson.serializer.SerializerFeature;
@@ -23,6 +25,7 @@ import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter4;
  * @author xywang 
  * @date 2017年9月19日 上午9:50:04
  */
+@Configuration
 public class WebConfigurer extends WebMvcConfigurerAdapter {
 
     @Override
@@ -35,5 +38,9 @@ public class WebConfigurer extends WebMvcConfigurerAdapter {
         converter.setFastJsonConfig(config);
         converter.setDefaultCharset(Charset.forName("UTF-8"));
         converters.add(converter);
+    }
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**");
     }
 }
