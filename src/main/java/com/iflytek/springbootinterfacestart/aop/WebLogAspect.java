@@ -1,11 +1,3 @@
-/**    
- * @Title: WebLogAspect.java  
- * @Package com.iflytek.billinginterface.aop  
- * @Description: TODO(用一句话描述该文件做什么)  
- * @author xywang   
- * @date 2017年6月29日 下午4:26:35  
- * @version V1.0    
- */
 package com.iflytek.springbootinterfacestart.aop;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +20,8 @@ import com.iflytek.springbootinterfacestart.model.Result;
 import com.iflytek.springbootinterfacestart.model.entity.Operation;
 import com.iflytek.springbootinterfacestart.model.entity.WebLog;
 
+import static com.iflytek.springbootinterfacestart.common.util.WebLogUtil.*;
+
 /**
  * @ClassName: WebLogAspect
  * @Description: 所有外部请求统一日志记录
@@ -39,7 +33,7 @@ import com.iflytek.springbootinterfacestart.model.entity.WebLog;
 @Component
 @Order(-5)
 public class WebLogAspect {
-	
+
 	private static final Logger LOGGER = LoggerFactory
 			.getLogger(WebLogAspect.class);
 
@@ -49,7 +43,9 @@ public class WebLogAspect {
 
 	@Around("webLog()")
 	public Object process(ProceedingJoinPoint point) throws Throwable {
-		WebLog webLog = new WebLog();
+
+		WebLog webLog = getLog();
+
 		webLog.getOperates().add(new Operation("WebLogAspect.process.in"));
 		Long start = System.currentTimeMillis();
 		Result<?> returnValue = null;
@@ -61,7 +57,7 @@ public class WebLogAspect {
 				.getRequestAttributes();
 		HttpServletRequest request = (HttpServletRequest) attributes
 				.getRequest();
-		
+
 		webLog.setUrl(request.getRequestURL().toString());
 		webLog.setIp(getIpAddress(request));
 		webLog.setHttp_method(request.getMethod());
@@ -72,9 +68,7 @@ public class WebLogAspect {
 		else {
 			webLog.setWebargs("空");
 		}
-		
-		args[args.length - 1] = webLog;
-		
+
 		try {
 			returnValue = (Result<?>) point.proceed(args);
 			webLog.setRet(JSON.toJSONString(returnValue));
@@ -92,16 +86,16 @@ public class WebLogAspect {
 		Result<?> result = new Result();
 
 		// 参数错误异常
-		// TODO 统一异常处理，可自行扩展
+		// 统一异常处理，可自行扩展
 		if (e instanceof ParaIllegalException) {
-			result.setMsg(e.getLocalizedMessage());
-			result.setCode(ResultCode.ILLEGALPARA.code);
+			result.setReturndesc(e.getLocalizedMessage());
+			result.setReturncode(ResultCode.ILLEGALPARA.returncode);
 		} else {
 			LOGGER.error(point.getSignature() + " error ", e);
-			result.setMsg(e.toString());
-			result.setCode(ResultCode.INTERNAL_SERVER_ERROR.code);
+			result.setReturndesc(e.toString());
+			result.setReturncode(ResultCode.INTERNAL_SERVER_ERROR.returncode);
 		}
-
+		getLog().setError(e.getMessage());
 		return result;
 	}
 

@@ -1,0 +1,22 @@
+1.集成swagger-start
+2.统一响应结果封装
+3.统一异常处理，接口日志
+4.统一参数验证
+5.编码规范
+6.json处理使用阿里fastjson
+7.使用lombok简化开发
+8.已经引入常用工具库apache.commons，guava
+
+
+1.Controller层接口要求统一返回Result<T>
+2.所有代码不要捕获异常，统一由aop来捕捉。需要自定义新的异常在exception包下。并修改aop.WebLogAspect中异常处理逻辑。
+3.统一返回码在common.ResultCode中定义。
+4.参数校验可以使用Spring自带@Valid注解，特殊情况需要自定义注解，例：common.annotation.NotStringNull
+  也可以使用参数校验工具类，common.util.ValidUtil直接抛出异常。
+5.所有和业务逻辑无关的处理尽量解耦，使用工具类或aop来实现。
+6.web请求日志对象在common.util.WebLogUtil封装，使用时直接调用静态方法。在aop.WebLogAspect中记录。
+7.配置文件使用yml文件避免中文乱码问题。
+
+
+TODO:
+1.统一接口签名验证

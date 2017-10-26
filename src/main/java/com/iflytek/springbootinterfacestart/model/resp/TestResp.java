@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Data
 public class TestResp implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private String data;
+	private String data;
 }

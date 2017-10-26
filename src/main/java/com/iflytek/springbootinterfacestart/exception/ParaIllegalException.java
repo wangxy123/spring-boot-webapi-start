@@ -1,11 +1,3 @@
-/**    
- * @Title: ParaIllegalException.java  
- * @Package com.iflytek.springbootinterfacestart.exception  
- * @Description: TODO(用一句话描述该文件做什么)  
- * @author xywang   
- * @date 2017年9月19日 下午1:05:04  
- * @version V1.0    
- */
 package com.iflytek.springbootinterfacestart.exception;
 
 /**
@@ -18,7 +10,7 @@ package com.iflytek.springbootinterfacestart.exception;
 public class ParaIllegalException extends RuntimeException {
 
 	/**
-	 * @Fields serialVersionUID 
+	 * @Fields serialVersionUID
 	 */
 	private static final long serialVersionUID = -4227850117731228650L;
 

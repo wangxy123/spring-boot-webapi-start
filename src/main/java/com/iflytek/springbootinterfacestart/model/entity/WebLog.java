@@ -1,11 +1,3 @@
-/**    
- * @Title: WebLog.java  
- * @Package com.iflytek.billinginterface.model.entity  
- * @Description: TODO(用一句话描述该文件做什么)  
- * @author xywang   
- * @date 2017年8月19日 下午2:44:20  
- * @version V1.0    
- */
 package com.iflytek.springbootinterfacestart.model.entity;
 
 import java.util.ArrayList;
@@ -29,6 +21,7 @@ public class WebLog {
 	private List<Operation> operates;
 	private String ret;
 	private String time;
+	private String error;
 
 	public WebLog() {
 		operates = new ArrayList<Operation>();
